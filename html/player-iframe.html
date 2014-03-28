@@ -1,0 +1,81 @@
+<div id="thediv" ></div>
+
+<!-- Brightcove -->
+<script type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+
+<!-- JQuery -->
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+
+<!-- TimedText -->
+<link rel="stylesheet" href="../node_modules/timed-text/css/timed-text.css"/>
+<script type="text/javascript" src="../node_modules/timed-text/js/TimedText.js"></script>
+<script type="text/javascript" src="../node_modules/timed-text/js/CaptionRenderer.js"></script>
+<script type="text/javascript" src="../node_modules/timed-text/js/TextTrack.js"></script>
+<script type="text/javascript" src="../node_modules/timed-text/js/TextTrackCue.js"></script>
+<script type="text/javascript" src="../node_modules/timed-text/js/plugins/WebVTT.js"></script>
+<script type="text/javascript" src="../node_modules/timed-text/js/plugins/SRT.js"></script>
+<script type="text/javascript" src="../node_modules/timed-text/js/plugins/TTML.js"></script>
+<script type="text/javascript" src="../node_modules/timed-text/js/plugins/SSAv4.js"></script>
+
+<!-- Ayamel.js -->
+
+<link rel="stylesheet" href="../node_modules/ayamel.js/css/player.css"/>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/async.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/Resource.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/swfobject.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/Ayamel.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/AnimationHandler.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/AyamelPlayer.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/CaptionsTraversal.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/CaptionTrackLoader.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/ControlBar.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/FullScreenHandler.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/KeyBinder.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/LangCodes.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/MediaPlayer.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/Mobile.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/ProgressBar.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/CaptionsMenu.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/FullScreenButton.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/LastCaptionButton.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/PlayButton.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/RateSlider.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/SliderBar.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/TimeCode.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/controls/VolumeSlider.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/plugins/brightcove.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/plugins/flashVideo.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/plugins/html5Video.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/plugins/html5Audio.js"></script>
+<script type="text/javascript" src="../node_modules/ayamel.js/js/plugins/youtube.js"></script>
+
+<script>
+
+function glueCode(){
+
+	Ayamel.prioritizedPlugins.video = ['html5', 'flash', 'brightcove', 'youtube'];
+	Ayamel.prioritizedPlugins.audio = ['html5'];
+	
+
+	ResourceLibrary.setBaseUrl('http://api.ayamel.org/api/v1/');
+	ResourceLibrary.load(window.location.hash.substr(1),function(resource){
+		new Ayamel.classes.AyamelPlayer({
+		   components: {
+				   left: ["play"],
+				   right: ["captions", "timeCode"]
+		   },
+		   $holder: $("#thediv"),
+		   resource: resource,
+		   //captionTracks: captions,
+		   startTime: 0,
+		   //endTime: args.endTime,
+		   aspectRatio: Ayamel.aspectRatios.hdVideo,
+		});
+	
+	});
+
+}
+
+glueCode();
+
+</script>
